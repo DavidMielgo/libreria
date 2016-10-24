@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkgBooks;
 
-/**
- *
- * @author DavSosMie
- */
 public class clODTBooks {
-    String codigo, titulo, autor, editorial, asignatura, estado;
+    private String codigo, titulo, autor, editorial, asignatura, estado;
 
     public clODTBooks() {
     }

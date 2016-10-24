@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkgStudent;
 
 import java.awt.event.ActionEvent;
@@ -13,10 +8,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import pkgMain.frmMain;
 
-/**
- *
- * @author DavSosMie
- */
 public class clStudentController implements ActionListener, DocumentListener {
 
     private dlgStudent studentDialogue;
@@ -27,9 +18,9 @@ public class clStudentController implements ActionListener, DocumentListener {
         studentDialogue = new dlgStudent(frmM, true, this);
         studentDialogue.setVisible(true);
     }
-    
-    public clStudentController(){
-    
+
+    public clStudentController() {
+
     }
 
     public clODTStudent getInfo() {
@@ -60,20 +51,13 @@ public class clStudentController implements ActionListener, DocumentListener {
                 studentDialogue.update();
 
             } else if (e.getActionCommand() == "btnSearch") {
-                /*String sql = "select * from alumnos where registro = " + studentDialogue.getTxtRegistro().getText();
-                if(bDni == true)sql = sql+ " and dni = '" + studentDialogue.getTxtDni().getText() + "'";
-                if(bNombre == true) sql = sql + " and nombre =  " + studentDialogue.getTxtNombre().getText() + "'";
-                if(bApellido1 == true)sql = sql + " and apellido1 = " + studentDialogue.getTxtApellido1().getText() + "'";
-                if(bApellido2 == true) sql = sql + " and apellido2 = " + studentDialogue.getTxtApellido2().getText() + "'";*/
-                /*studentDialogue.setTextDni(resultQuery.getString("dni"));
-                studentDialogue.setTextName(resultQuery.getString("nombre"));
-                studentDialogue.setTextApellido1(resultQuery.getString("apellido1"));
-                studentDialogue.setTextApellido2(resultQuery.getString("apellido2"));*/
-                
                 clODTStudent student = getInfo();
                 resultQuery = studentSqlController.getStudentSearch(student);
                 resultQuery.next();
                 studentDialogue.updateStudent(resultQuery);
+
+            } else if (e.getActionCommand() == "btnReset") {
+                studentDialogue.update();
             } else {
                 studentDialogue.dispose();
             }
@@ -82,7 +66,7 @@ public class clStudentController implements ActionListener, DocumentListener {
             studentDialogue.showError("Ha habido un error en la consulta");
         }
     }
-//btnSearch
+
 
     public boolean isbRegistro() {
         return bRegistro;
@@ -124,9 +108,6 @@ public class clStudentController implements ActionListener, DocumentListener {
         this.bApellido2 = bApellido2;
     }
 
-    
-    
-    
     @Override
     public void insertUpdate(DocumentEvent e) {
         if (e.getDocument() == studentDialogue.getTxtRegistro().getDocument() && bRegistro == false) {
@@ -144,25 +125,21 @@ public class clStudentController implements ActionListener, DocumentListener {
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-                if(e.getDocument() == studentDialogue.getTxtRegistro().getDocument() && bRegistro == true && studentDialogue.getTxtRegistro().getText().equals("")){
+        if (e.getDocument() == studentDialogue.getTxtRegistro().getDocument() && bRegistro == true && studentDialogue.getTxtRegistro().getText().equals("")) {
             bRegistro = false;
-            
-        }
-        else if(e.getDocument() == studentDialogue.getTxtNombre().getDocument() && bNombre == true && studentDialogue.getTxtNombre().getText().equals("")){
+
+        } else if (e.getDocument() == studentDialogue.getTxtNombre().getDocument() && bNombre == true && studentDialogue.getTxtNombre().getText().equals("")) {
             bNombre = false;
-           
-        }
-        else if(e.getDocument() == studentDialogue.getTxtDni().getDocument() && bDni == true && studentDialogue.getTxtDni().getText().equals("")){
+
+        } else if (e.getDocument() == studentDialogue.getTxtDni().getDocument() && bDni == true && studentDialogue.getTxtDni().getText().equals("")) {
             bDni = false;
-            
-        }
-        else if(e.getDocument() == studentDialogue.getTxtApellido1().getDocument() && bApellido1 == true && studentDialogue.getTxtApellido1().getText().equals("")){
+
+        } else if (e.getDocument() == studentDialogue.getTxtApellido1().getDocument() && bApellido1 == true && studentDialogue.getTxtApellido1().getText().equals("")) {
             bApellido1 = false;
-            
-        }
-        else if(e.getDocument() == studentDialogue.getTxtApellido2().getDocument() && bApellido2 == true   && studentDialogue.getTxtApellido2().getText().equals("")){
+
+        } else if (e.getDocument() == studentDialogue.getTxtApellido2().getDocument() && bApellido2 == true && studentDialogue.getTxtApellido2().getText().equals("")) {
             bApellido2 = false;
-            
+
         }
     }
 
