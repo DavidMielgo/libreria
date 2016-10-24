@@ -28,7 +28,11 @@ public class dlgStudent extends javax.swing.JDialog {
             btnModificaciones.addActionListener(StudentController);
             btnSalir.addActionListener(StudentController);
             btnSearch.addActionListener(StudentController);
-            //txtApellido1.addKeyListener();
+            txtRegistro.getDocument().addDocumentListener(StudentController);
+            txtDni.getDocument().addDocumentListener(StudentController);
+            txtNombre.getDocument().addDocumentListener(StudentController);
+            txtApellido1.getDocument().addDocumentListener(StudentController);
+            txtApellido2.getDocument().addDocumentListener(StudentController);
             vistaTabla = new VistaTabla(sqlControl.getAllStudent());
             TablaAlumnos.setModel(vistaTabla);
 
@@ -48,6 +52,12 @@ public class dlgStudent extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Ha Habido un Error");
         }
 
+    }
+    
+    public void updateStudent(ResultSet result){
+        sqlControl = new clStudentSQLController();
+        vistaTabla = new VistaTabla(result);
+        TablaAlumnos.setModel(vistaTabla);
     }
 
     public void showError(String parameter) {
@@ -237,6 +247,7 @@ public class dlgStudent extends javax.swing.JDialog {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Usuarios.png"))); // NOI18N
 
         btnSearch.setText("Buscar");
+        btnSearch.setActionCommand("btnSearch");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

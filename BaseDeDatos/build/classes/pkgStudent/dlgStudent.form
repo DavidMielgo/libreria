@@ -285,6 +285,7 @@
         <Component class="javax.swing.JButton" name="btnSearch">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="actionCommand" type="java.lang.String" value="btnSearch"/>
           </Properties>
         </Component>
       </SubComponents>

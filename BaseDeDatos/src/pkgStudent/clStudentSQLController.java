@@ -46,10 +46,24 @@ public class clStudentSQLController {
 
     }
 
-
-    public ResultSet search(String registro) throws SQLException {
-        String sql = "select * from alumnos where registro = " + registro + ";";
+    public ResultSet search(String sql) throws SQLException {
         resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
         return resultQuery;
     }
+
+    public ResultSet getStudentSearch(clODTStudent student) throws SQLException {
+        clStudentController studentCon =  new clStudentController();
+        String sql = "select * from alumnos where ";
+        if (student.getRegist() != "") sql = sql + "registro = " + student.getRegist() + " and ";
+        if (!student.getDni().equals("")) sql = sql + "dni = '" + student.getDni() + "' and ";
+        if (studentCon.isbNombre() == true) sql = sql + "nombre =  '" + student.getName() + "' and ";
+        if (studentCon.isbApellido1() == true) sql = sql + "apellido1 = '" + student.getSurname1() + "' and ";
+        if (studentCon.isbApellido2() == true) sql = sql + "apellido2 = '" + student.getSurname2() + "' and ";
+        System.out.println(sql);
+        System.out.println("" + studentCon.isbRegistro() + studentCon.isbDni() + studentCon.isbNombre() + 
+            studentCon.isbApellido1() + studentCon.isbApellido2());
+        resultQuery = clConexionSingleton.getInstance().executeQuery(sql);
+        return resultQuery;
+    }
+
 }
